@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About - Cancer Detection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gradient-to-r from-purple-800 via-indigo-800 to-blue-900 shadow-md z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="{{ url_for('home') }}" class="text-3xl font-bold text-white">CancerDetectAI</a>
+      <div class="space-x-4 text-white">
+        <a href="{{ url_for('home') }}" class="hover:text-yellow-300">Home</a>
+        <a href="{{ url_for('docs') }}" class="hover:text-yellow-300">Docs</a>
+        <a href="{{ url_for('about') }}" class="hover:text-yellow-300">About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="pt-28 px-6 max-w-4xl mx-auto space-y-12 pb-16">
+    <!-- Introduction -->
+    <section>
+      <h1 class="text-4xl font-extrabold mb-4 text-purple-300">About This Project</h1>
+      <p class="text-lg text-gray-300">This web application uses a machine learning model to predict whether a breast tumor is malignant or benign based on several medical features. The model is trained on the popular Breast Cancer Wisconsin dataset using scikit-learn and a neural network implemented in TensorFlow/Keras.</p>
+    </section>
+
+    <!-- Key Features -->
+    <section>
+      <h2 class="text-3xl font-semibold text-indigo-300 mb-3">Key Features</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-300">
+        <li>Input form with 30 cancer-related features</li>
+        <li>Model prediction for Malignant or Benign outcome</li>
+        <li>Clean and modern UI built with Tailwind CSS</li>
+        <li>Real-time classification with result highlighting</li>
+        <li>Documentation section explaining all features</li>
+      </ul>
+    </section>
+
+    <!-- Tech Stack -->
+    <section>
+      <h2 class="text-3xl font-semibold text-indigo-300 mb-3">Tech Stack</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
+        <div>
+          <h3 class="font-medium mb-2 text-purple-400"><i class="fab fa-python mr-2"></i>Backend</h3>
+          <ul class="list-disc list-inside">
+            <li>Python (Flask)</li>
+            <li>scikit-learn, TensorFlow/Keras</li>
+            <li>Pandas & NumPy</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-medium mb-2 text-purple-400"><i class="fas fa-code mr-2"></i>Frontend</h3>
+          <ul class="list-disc list-inside">
+            <li>HTML5 & Tailwind CSS</li>
+            <li>Font Awesome</li>
+            <li>Jinja2 Templates</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Motivation -->
+    <section>
+      <h2 class="text-3xl font-semibold text-indigo-300 mb-3">Why This Project?</h2>
+      <p class="text-gray-300">Early detection of breast cancer significantly improves treatment outcomes. With the help of machine learning, healthcare providers can get a second opinion or rapid assessment based on tumor features. This project aims to demonstrate how AI can be used to assist in such medical tasks.</p>
+    </section>
+
+    <!-- Author Section -->
+    <section>
+      <h2 class="text-3xl font-semibold text-indigo-300 mb-3">Author</h2>
+      <div class="flex items-center space-x-6">
+        <img src="{{ url_for('static', filename='uploads/profile.jpg') }}" alt="Profile" class="w-24 h-24 rounded-full border-4 border-purple-600">
+        <div>
+          <h3 class="text-2xl font-bold text-purple-300">Swapnil Dixit</h3>
+          <p class="text-gray-400">B.Tech CSE Student at BPIT (GGSIPU, Delhi)</p>
+          <p class="text-gray-400">Aspiring Data Scientist | Full Stack Developer</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

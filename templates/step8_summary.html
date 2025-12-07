@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --healing-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --warning-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            --text-color: #2d3748;
+            --border-radius: 16px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --card-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Falling Leaves Animation */
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4ade80;
+            border-radius: 0 100% 0 100%;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        .leaf:nth-child(1) {
+            left: 10%;
+            animation-duration: 8s;
+            animation-delay: 0s;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+        }
+
+        .leaf:nth-child(2) {
+            left: 20%;
+            animation-duration: 10s;
+            animation-delay: 1s;
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            transform: rotate(45deg);
+        }
+
+        .leaf:nth-child(3) {
+            left: 30%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+            background: linear-gradient(45deg, #65a30d, #84cc16);
+        }
+
+        .leaf:nth-child(4) {
+            left: 40%;
+            animation-duration: 9s;
+            animation-delay: 0.5s;
+            background: linear-gradient(45deg, #16a34a, #15803d);
+            transform: rotate(-30deg);
+        }
+
+        .leaf:nth-child(5) {
+            left: 50%;
+            animation-duration: 11s;
+            animation-delay: 1.5s;
+            background: linear-gradient(45deg, #84cc16, #65a30d);
+        }
+
+        .leaf:nth-child(6) {
+            left: 60%;
+            animation-duration: 8.5s;
+            animation-delay: 3s;
+            background: linear-gradient(45deg, #22c55e, #4ade80);
+            transform: rotate(60deg);
+        }
+
+        .leaf:nth-child(7) {
+            left: 70%;
+            animation-duration: 12s;
+            animation-delay: 0.8s;
+            background: linear-gradient(45deg, #15803d, #166534);
+        }
+
+        .leaf:nth-child(8) {
+            left: 80%;
+            animation-duration: 9.5s;
+            animation-delay: 2.5s;
+            background: linear-gradient(45deg, #4ade80, #22c55e);
+            transform: rotate(-45deg);
+        }
+
+        .leaf:nth-child(9) {
+            left: 90%;
+            animation-duration: 10.5s;
+            animation-delay: 1.8s;
+            background: linear-gradient(45deg, #84cc16, #22c55e);
+        }
+
+        .leaf:nth-child(10) {
+            left: 5%;
+            animation-duration: 13s;
+            animation-delay: 4s;
+            background: linear-gradient(45deg, #16a34a, #4ade80);
+            transform: rotate(90deg);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotateZ(0deg);
+                opacity: 1;
+            }
+
+            20% {
+                opacity: 0.8;
+                transform: translateY(-80vh) rotateZ(90deg);
+            }
+
+            40% {
+                transform: translateY(-60vh) rotateZ(180deg);
+            }
+
+            60% {
+                transform: translateY(-40vh) rotateZ(270deg);
+            }
+
+            80% {
+                opacity: 0.6;
+                transform: translateY(-20vh) rotateZ(360deg);
+            }
+
+            100% {
+                transform: translateY(100vh) rotateZ(450deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Floating healing orbs */
+        .healing-orb {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(79, 172, 254, 0.3) 0%, transparent 70%);
+            animation: healingFloat 6s ease-in-out infinite;
+        }
+
+        .healing-orb:nth-child(11) {
+            top: 20%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .healing-orb:nth-child(12) {
+            top: 60%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .healing-orb:nth-child(13) {
+            bottom: 30%;
+            left: 25%;
+            animation-delay: 4s;
+        }
+
+        @keyframes healingFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .step-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+            animation: fadeInScale 0.6s ease-out 0.2s both;
+        }
+
+        .step-indicator i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            animation: fadeInScale 0.6s ease-out 0.4s both;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            animation: fadeInScale 0.6s ease-out 0.6s both;
+        }
+
+        /* Enhanced Table Styling */
+        .table-container {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            animation: slideInLeft 0.8s ease-out 0.8s both;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+
+        .feature-table th {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 18px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .feature-table th:first-child {
+            border-top-left-radius: var(--border-radius);
+        }
+
+        .feature-table th:last-child {
+            border-top-right-radius: var(--border-radius);
+        }
+
+        .feature-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        .feature-table tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .feature-table tr:hover {
+            background-color: #e0f2fe;
+            transform: translateX(5px);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-table td:first-child {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .feature-table td:last-child {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Enhanced Result Box */
+        .result-container {
+            animation: slideInRight 0.8s ease-out 1s both;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, rgba(17, 153, 142, 0.1) 0%, rgba(56, 239, 125, 0.1) 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+
+        .result-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--success-gradient);
+            opacity: 0.1;
+            border-radius: var(--border-radius);
+            z-index: -1;
+        }
+
+        .result-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            background: var(--success-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .result-text {
+            color: #047857;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .confidence-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            width: var(--fill-width, 0%);
+            background-color: var(--fill-color, var(--success-gradient));
+            border-radius: 4px;
+            transition: width 1s ease-out, background-color 0.3s ease;
+        }
+
+        .confidence-text {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            animation: fadeInScale 0.6s ease-out 1.2s both;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: var(--card-shadow);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Floating particles */
+        .success-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: floatUp 3s ease-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.5);
+            }
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 95%;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 30px 25px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .feature-table th,
+            .feature-table td {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .result-box {
+                padding: 25px 20px;
+                font-size: 18px;
+            }
+
+            .result-icon {
+                font-size: 36px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+                padding: 25px 20px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .step-indicator {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Falling Leaves -->
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+    <div class="leaf"></div>
+
+    <!-- Healing Orbs -->
+    <div class="healing-orb"></div>
+    <div class="healing-orb"></div>
+    <div class="healing-orb"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="step-indicator">
+                <i class="fas fa-clipboard-check"></i>
+                Step {{ current_step }} of {{ total_steps }}
+            </div>
+            <h2>🏥 Prediction Summary</h2>
+            <p class="subtitle">Complete analysis of your medical parameters</p>
+        </div>
+
+        <div class="table-container">
+            <table class="feature-table">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-microscope"></i> Medical Parameter</th>
+                        <th><i class="fas fa-chart-bar"></i> Measured Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for name, value in pairs %}
+                    <tr>
+                        <td>{{ name }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="result-container">
+            <div class="result-box">
+              <i class="fas fa-heartbeat result-icon"></i>
+              
+              <!-- Prediction Label -->
+              <h3 class="text-2xl font-bold mb-2">{{ prediction }}</h3>
+              
+              <!-- Dynamic Confidence Bar -->
+              <div class="confidence-bar">
+                <div
+                  class="confidence-fill"
+                  style="--fill-width: {{ (probability * 100) | round(2) }}%; --fill-color: {{ bar_color }};"
+                ></div>
+              </div>
+              
+              <!-- Confidence Text -->
+              <div class="confidence-text mt-2">
+                Analysis Confidence: {{ (probability * 100) | round(2) }}%
+              </div>
+          
+              <!-- Warning if low confidence -->
+              {% if warning %}
+                <p class="text-sm text-red-500 mt-2">{{ warning }}</p>
+              {% endif %}
+            </div>
+          </div>
+          
+
+        <div class="action-buttons">
+            <button class="btn btn-primary" onclick="window.print()">
+                <i class="fas fa-download"></i>
+                Download Report
+            </button>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                New Analysis
+            </a> 
+            <a href="{{ url_for('static', filename='eda_report.html') }}" target="_blank">View Report</a>                
+        </div>
+    </div>
+
+    <script>
+        // Create floating success particles
+        function createSuccessParticle() {
+            const resultBox = document.querySelector('.result-box');
+            const particle = document.createElement('div');
+            particle.className = 'success-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.bottom = '0px';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+
+            const colors = ['#22c55e', '#4ade80', '#16a34a', '#84cc16'];
+            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+            resultBox.appendChild(particle);
+
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 3000);
+        }
+
+        // Enhanced leaf creation for more dynamic falling effect
+        function createDynamicLeaf() {
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            leaf.style.animationDelay = Math.random() * 2 + 's';
+
+            const leafShapes = [
+                'border-radius: 0 100% 0 100%;',
+                'border-radius: 100% 0 100% 0;',
+                'border-radius: 50% 0 50% 0;',
+                'border-radius: 0 50% 0 50%;'
+            ];
+
+            const colors = [
+                'linear-gradient(45deg, #22c55e, #16a34a)',
+                'linear-gradient(45deg, #4ade80, #22c55e)',
+                'linear-gradient(45deg, #65a30d, #84cc16)',
+                'linear-gradient(45deg, #16a34a, #15803d)',
+                'linear-gradient(45deg, #84cc16, #65a30d)'
+            ];
+
+            leaf.style.cssText += leafShapes[Math.floor(Math.random() * leafShapes.length)];
+            leaf.style.background = colors[Math.floor(Math.random() * colors.length)];
+            leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+            document.body.appendChild(leaf);
+
+            setTimeout(() => {
+                if (leaf.parentNode) {
+                    leaf.parentNode.removeChild(leaf);
+                }
+            }, 15000);
+        }
+
+        // Initialize effects
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create periodic success particles
+            setInterval(createSuccessParticle, 1500);
+
+            // Create additional dynamic leaves
+            setInterval(createDynamicLeaf, 2000);
+
+            // Add hover effects to table rows
+            const tableRows = document.querySelectorAll('.feature-table tr');
+            tableRows.forEach((row, index) => {
+                if (index > 0) { // Skip header row
+                    row.addEventListener('mouseenter', function () {
+                        createSuccessParticle();
+                    });
+                }
+            });
+
+            // Animate table rows on scroll into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateX(0)';
+                    }
+                });
+            });
+
+            tableRows.forEach(row => {
+                observer.observe(row);
+            });
+        });
+    </script>
+</body>
+
+</html>

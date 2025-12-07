@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Documentation</h2>
+  <p>This page explains each feature used by the model for predicting breast cancer.</p>
+
+  <table style="width: 100%; border-collapse: collapse; margin-top: 2rem;">
+    <thead>
+      <tr style="background-color: #f2f2f2;">
+        <th style="border: 1px solid #ccc; padding: 10px;">Feature</th>
+        <th style="border: 1px solid #ccc; padding: 10px;">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean radius</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Average distance from center to points on the perimeter.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean texture</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard deviation of gray-scale values.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean perimeter</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Average size of the perimeter of the cell nucleus.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean area</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Average size of the cell nucleus area.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean smoothness</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Mean of local variation in radius lengths.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean compactness</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Mean of (perimeter² / area - 1.0).</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean concavity</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Mean of severity of concave portions of the contour.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean concave points</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Mean of number of concave portions of the contour.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean symmetry</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Mean symmetry of the cell.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">mean fractal dimension</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Mean of "coastline approximation"—complexity of the contour.</td>
+      </tr>
+
+      <!-- Add 20 more features below -->
+
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">radius error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of the radius.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">texture error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of texture.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">perimeter error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of perimeter.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">area error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of area.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">smoothness error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of smoothness.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">compactness error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of compactness.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">concavity error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of concavity.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">concave points error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of concave points.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">symmetry error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of symmetry.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">fractal dimension error</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Standard error of fractal dimension.</td>
+      </tr>
+
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst radius</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of radius.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst texture</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of texture.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst perimeter</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of perimeter.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst area</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of area.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst smoothness</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of smoothness.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst compactness</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of compactness.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst concavity</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of concavity.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst concave points</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of concave points.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst symmetry</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of symmetry.</td>
+      </tr>
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 10px;">worst fractal dimension</td>
+        <td style="border: 1px solid #ccc; padding: 10px;">Largest mean value of fractal dimension.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 2rem;">
+    <a href="{{ url_for('home') }}">← Back to Home</a>
+  </div>
+{% endblock %}

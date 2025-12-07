@@ -1,0 +1,8 @@
+benv/
+__pycache__/
+*.pyc
+*.ipynb_checkpoints/
+*.dylib
+*.so
+*.h5
+*.pkl

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Welcome to the Breast Cancer Predictor</h2>
+  <p>This application will guide you through seven steps of entering tumor measurements, then provide a prediction of benign vs. malignant.</p>
+  
+  <div style="text-align: center; margin-top: 2rem;">
+    <a href="{{ url_for('step_handler', step=1) }}" style="text-decoration: none;">
+      <button class="primary-btn">
+        ▶ Start Prediction
+      </button>
+    </a>
+  </div>
+  
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="{{ url_for('about') }}" style="margin: 0 1rem; text-decoration: none;">
+      <button class="secondary-btn">
+        About
+      </button>
+    </a>
+    <a href="{{ url_for('docs') }}" style="margin: 0 1rem; text-decoration: none;">
+      <button class="secondary-btn">
+        Documentation
+      </button>
+    </a>
+  </div>
+
+  <style>
+    .primary-btn, .secondary-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      min-width: 150px;
+    }
+    
+    .primary-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+    }
+    
+    .primary-btn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .primary-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .secondary-btn {
+      background: #667eea;
+      color: #fff;
+    }
+    
+    .secondary-btn:hover {
+      background: #5a6fd8;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .secondary-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .primary-btn, .secondary-btn {
+        width: 100%;
+        margin: 0.5rem 0;
+      }
+      
+      div[style*="margin: 0 1rem"] {
+        display: block;
+      }
+      
+      a[style*="margin: 0 1rem"] {
+        margin: 0.5rem 0 !important;
+        display: block;
+      }
+    }
+  </style>
+{% endblock %}

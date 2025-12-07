@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="step-info">Step 6 of 8: Smoothness & Compactness</div>
+  
+  <form method="POST">
+    <div class="form-group">
+      <label for="mean_smoothness">
+        Mean Smoothness
+        <span class="info-tag" title="Average local variation in radius length — lower means smoother boundary.">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+        </span>
+      </label>
+      <input type="number" id="mean_smoothness" name="mean_smoothness" step="any" required>
+    </div>
+
+    <div class="form-group">
+      <label for="smoothness_error">
+        Smoothness Error (SE)
+        <span class="info-tag" title="Standard error of smoothness measurements">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+        </span>
+      </label>
+      <input type="number" id="smoothness_error" name="smoothness_error" step="any" required>
+    </div>
+
+    <div class="form-group">
+      <label for="worst_smoothness">
+        Worst Smoothness
+        <span class="info-tag" title="Maximum smoothness value recorded">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+        </span>
+      </label>
+      <input type="number" id="worst_smoothness" name="worst_smoothness" step="any" required>
+    </div>
+
+    <div class="form-group">
+      <label for="mean_compactness">
+        Mean Compactness
+        <span class="info-tag" title="Measure of perimeter^2 / area — indicates how compact or elongated the tumor is.">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+        </span>
+      </label>
+      <input type="number" id="mean_compactness" name="mean_compactness" step="any" required>
+    </div>
+
+    <div class="form-group">
+      <label for="compactness_error">
+        Compactness Error (SE)
+        <span class="info-tag" title="Standard error of compactness measurements">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+        </span>
+      </label>
+      <input type="number" id="compactness_error" name="compactness_error" step="any" required>
+    </div>
+
+    <div class="form-group">
+      <label for="worst_compactness">
+        Worst Compactness
+        <span class="info-tag" title="Maximum compactness value observed">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+          </svg>
+        </span>
+      </label>
+      <input type="number" id="worst_compactness" name="worst_compactness" step="any" required>
+    </div>
+
+    <button type="submit" class="next-btn">
+      <span class="btn-content">
+        <span class="btn-text">Next</span>
+        <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none">
+          <path d="M5 12H19M12 5L19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </button>
+  </form>
+
+  <style>
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+      position: relative;
+    }
+
+    .info-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 50%;
+      margin-left: 8px;
+      cursor: help;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+      position: relative;
+    }
+
+    .info-tag:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      transform: scale(1.15);
+      box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+    }
+
+    .info-tag::before {
+      content: attr(title);
+      position: absolute;
+      bottom: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2d3748;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      font-weight: normal;
+      max-width: 250px;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .info-tag::after {
+      content: '';
+      position: absolute;
+      bottom: 122%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: #2d3748;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .info-tag:hover::before,
+    .info-tag:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      background: #fff;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    input[type="number"]:hover {
+      border-color: #cbd5e0;
+    }
+
+    .next-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 2rem;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .next-btn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.35);
+    }
+
+    .next-btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .next-btn:active {
+      transform: translateY(0);
+    }
+
+    .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    @media (max-width: 600px) {
+      .info-tag::before {
+        max-width: 200px;
+        font-size: 11px;
+      }
+    }
+  </style>
+{% endblock %}
